@@ -327,7 +327,7 @@ sumo 1 a cada (contando el 0)???
 | PROM |     |     |
 ### iii.
 ![[Pasted image 20250928143310.png]]
-## 3b.
+
 | P    | TR  | TE  |
 | ---- | --- | --- |
 | 1    | 22  |     |
@@ -336,3 +336,159 @@ sumo 1 a cada (contando el 0)???
 | 4    |     |     |
 | 5    |     |     |
 | PROM |     |     |
+
+## 4. Dado el siguiente lote de procesos
+
+| job | LLegada | Unidades de CPU |
+| --- | ------- | --------------- |
+| 1   | 0       | 4               |
+| 2   | 2       | 6               |
+| 3   | 3       | 4               |
+| 4   | 6       | 5               |
+| 5   | 8       | 2               |
+### FCFS
+![[Pasted image 20251006150849.png]]
+
+| P    | TR  | TE  |
+| ---- | --- | --- |
+| 1    | 4   | 0   |
+| 2    | 8   | 2   |
+| 3    | 11  | 7   |
+| 4    | 13  | 8   |
+| 5    | 13  | 11  |
+| PROM | 9,8 | 5,6 |
+
+### SJF
+![[Pasted image 20251006151104.png]]
+
+| P    | TR  | TE  |
+| ---- | --- | --- |
+| 1    | 4   | 0   |
+| 2    | 19  | 13  |
+| 3    | 5   | 1   |
+| 4    | 9   | 4   |
+| 5    | 2   | 0   |
+| PROM | 7,8 | 3,6 |
+
+### RR q=1
+![[Pasted image 20251006151130.png]]
+
+| P    | TR   | TE  |
+| ---- | ---- | --- |
+| 1    | 7    | 0   |
+| 2    | 17   | 11  |
+| 3    | 14   | 10  |
+| 4    | 15   | 10  |
+| 5    | 8    | 6   |
+| PROM | 12,2 | 7,4 |
+
+### RR q=6
+![[Pasted image 20251006151207.png]]
+
+| P    | TR  | TE  |
+| ---- | --- | --- |
+| 1    | 4   | 0   |
+| 2    | 8   | 2   |
+| 3    | 11  | 7   |
+| 4    | 13  | 8   |
+| 5    | 13  | 11  |
+| PROM | 9,8 | 5,6 |
+### c. En base a los tiempos calculados, compare los diferentes algoritmos
+
+### d. En el algoritmo RR, que conclusión se puede sacar con respecto al valor del quantum?
+
+### e. ¿Para el algoritmo Round Robin, en qué casos utilizará un valor dequantum alto y qué ventajas y desventajas obtendría?
+### 💡 Si se usa un **quantum alto**:
+
+Esto significa que cada proceso puede ejecutar durante más tiempo antes de ser interrumpido.
+
+#### ✅ **Ventajas:**
+
+1. **Menos cambios de contexto** → se reduce la sobrecarga del sistema (menos tiempo perdido cambiando entre procesos).
+    
+2. **Mejor rendimiento para procesos largos** → si las tareas suelen ser pesadas (por ejemplo, cálculos o simulaciones), terminan antes de ser interrumpidas.
+    
+3. **Más parecido a un sistema por lotes (batch)** → puede mejorar el throughput (cantidad de trabajo completado por unidad de tiempo) si las tareas no son interactivas.
+    
+
+#### ❌ **Desventajas:**
+
+1. **Menor capacidad de respuesta** → los procesos cortos o interactivos (como los que esperan input del usuario) pueden tardar mucho en volver a ejecutar.
+    
+2. **Inequidad percibida** → un proceso que justo termine antes de que se acabe el quantum puede hacer esperar a los demás demasiado tiempo.
+    
+3. **Se pierde el espíritu del Round Robin** → con un quantum demasiado alto, se comporta casi como un planificador FCFS (_First Come, First Served_).
+    
+
+---
+### ⚖️ **Resumen visual:**
+
+|Quantum|Ventajas|Desventajas|Tipo de sistema recomendado|
+|---|---|---|---|
+|**Bajo**|Alta respuesta, justo con procesos cortos|Mucho cambio de contexto|Sistemas interactivos o en tiempo compartido|
+|**Alto**|Menos overhead, más rendimiento para procesos largos|Menor interactividad|Sistemas batch o de procesamiento intensivo|
+## 5. Una variante al algoritmo SJF es el algoritmo SJF apropiativo o SRTF (Shortest Remaining Time First):
+### a.​ Realice el diagrama de Gantt para este algoritmo según el lote de trabajos del ejercicio 5
+![[Pasted image 20251006162412.png]]
+
+| P    | TR  | TE  |
+| ---- | --- | --- |
+| 1    | 4   | 0   |
+| 2    | 19  | 13  |
+| 3    | 5   | 1   |
+| 4    | 4   | 9   |
+| 5    | 2   | 0   |
+| PROM | 6,8 | 4,6 |
+### b.​ ¿Nota alguna ventaja frente a otros algoritmos?
+
+Esto significa que **si llega un nuevo proceso con un tiempo de ejecución restante menor** que el del proceso actual, **el CPU se le cede inmediatamente** a ese nuevo proceso.
+
+---
+
+### ✅ **Ventajas del SRTF**
+
+1. **Tiempo de espera promedio mínimo**  
+    Es el algoritmo óptimo en cuanto a **minimizar el tiempo de espera promedio**, porque siempre se elige el proceso que terminará más rápido.
+    
+    > Ejemplo: si llega un proceso corto mientras otro largo está ejecutando, el corto no queda “bloqueado” mucho tiempo.
+    
+2. **Mejor tiempo de respuesta para procesos cortos**  
+    Los procesos pequeños o interactivos reciben atención casi inmediata, lo que mejora la **interactividad del sistema**.
+    
+3. **Uso eficiente del procesador**  
+    El CPU está casi siempre ejecutando el proceso más conveniente (el que liberará antes el recurso), maximizando así la productividad global.
+    
+
+---
+
+### ❌ **Desventajas (para contrastar)**
+
+Aunque no lo pedís, vale la pena mencionarlas brevemente:
+
+- Requiere **conocer o estimar la duración de los procesos**, lo cual no siempre es posible.
+    
+- Puede provocar **injusticia o inanición (starvation)**: procesos largos pueden esperar mucho si siguen llegando procesos cortos.
+    
+- Tiene **mayor sobrecarga** que el SJF no apropiativo, porque implica más decisiones de cambio de proceso.
+    
+
+---
+
+### 🧩 **Resumen**
+
+|Característica|SJF no apropiativo|**SRTF (apropiativo)**|
+|---|---|---|
+|Tipo|No interrumpe al proceso en ejecución|Puede interrumpir si llega uno más corto|
+|Tiempo de espera promedio|Bajo|🔹 **Mínimo posible**|
+|Tiempo de respuesta|Bueno|🔹 **Excelente para procesos cortos**|
+|Sobrecarga|Menor|Mayor|
+|Posible inanición|Moderada|Más probable|
+## Suponga que se agregan las siguientes prioridades al lote de procesos delejercicio 5, donde un menor número indica mayor prioridad:
+
+| job | Prioridad | LLegada | Unidades de CPU |
+| --- | --------- | ------- | --------------- |
+| 1   | 3         | 0       | 4               |
+| 2   | 4         | 2       | 6               |
+| 3   | 2         | 3       | 4               |
+| 4   | 1         | 6       | 5               |
+| 5   | 2         | 8       | 2               |
