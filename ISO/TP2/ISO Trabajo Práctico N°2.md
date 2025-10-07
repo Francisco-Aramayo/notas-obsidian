@@ -439,6 +439,7 @@ Esto significa que cada proceso puede ejecutar durante más tiempo antes de ser 
 | 4    | 4   | 9   |
 | 5    | 2   | 0   |
 | PROM | 6,8 | 4,6 |
+
 ### b.​ ¿Nota alguna ventaja frente a otros algoritmos?
 
 Esto significa que **si llega un nuevo proceso con un tiempo de ejecución restante menor** que el del proceso actual, **el CPU se le cede inmediatamente** a ese nuevo proceso.
@@ -483,7 +484,7 @@ Aunque no lo pedís, vale la pena mencionarlas brevemente:
 |Tiempo de respuesta|Bueno|🔹 **Excelente para procesos cortos**|
 |Sobrecarga|Menor|Mayor|
 |Posible inanición|Moderada|Más probable|
-## Suponga que se agregan las siguientes prioridades al lote de procesos delejercicio 5, donde un menor número indica mayor prioridad:
+## 6. Suponga que se agregan las siguientes prioridades al lote de procesos delejercicio 5, donde un menor número indica mayor prioridad:
 
 | job | Prioridad | LLegada | Unidades de CPU |
 | --- | --------- | ------- | --------------- |
@@ -492,3 +493,116 @@ Aunque no lo pedís, vale la pena mencionarlas brevemente:
 | 3   | 2         | 3       | 4               |
 | 4   | 1         | 6       | 5               |
 | 5   | 2         | 8       | 2               |
+
+### Apropiativo
+![[Pasted image 20251007175016.png]]
+
+| P    | TR   | TE  |
+| ---- | ---- | --- |
+| 1    | 15   | 11  |
+| 2    | 19   | 13  |
+| 3    | 9    | 5   |
+| 4    | 5    | 0   |
+| 5    | 6    | 4   |
+| PROM | 10,8 | 6,6 |
+
+
+### No Apropiativa
+![[Pasted image 20251007175027.png]]
+
+| P    | TR  | TE  |
+| ---- | --- | --- |
+| 1    |     |     |
+| 2    |     |     |
+| 3    |     |     |
+| 4    |     |     |
+| 5    |     |     |
+| PROM |     |     |
+### c.​ ¿Nota alguna ventaja frente a otros algoritmos? ¿Bajo qué circunstancias lo utilizaría y ante qué situaciones considera que la implementación de prioridades podría no ser de mayor relevancia?
+**Ventajas frente a otros algoritmos:**
+
+- Permite **dar preferencia a procesos críticos o más importantes**, algo que FCFS o SJF no consideran.
+    
+- Puede **mejorar el tiempo de respuesta de tareas urgentes**, garantizando que trabajos del sistema (por ejemplo, interrupciones o procesos interactivos) reciban CPU antes que los procesos de baja prioridad.
+    
+- En su versión **apropiativa**, puede reaccionar dinámicamente cuando llega un proceso de mayor prioridad, interrumpiendo otro en ejecución (útil en sistemas de tiempo real o interactivos).
+    
+
+**Cuándo lo usaría:**
+
+- En **sistemas de tiempo real** o **multitarea interactiva**, donde algunas tareas deben ejecutarse antes que otras (por ejemplo, control de dispositivos, atención de eventos, o procesos del kernel).
+    
+- Cuando se necesita **controlar la política de planificación según la importancia o urgencia del proceso**.
+    
+- En entornos donde se puede **asignar prioridad según tipo de tarea o usuario** (por ejemplo, prioridad más alta a procesos del sistema y menor a procesos de usuario).
+    
+
+**Cuándo las prioridades podrían no ser relevantes o incluso problemáticas:**
+
+- En sistemas donde **todos los procesos son equivalentes** o tienen **tiempos de CPU similares**, la prioridad no aporta beneficios reales frente a algoritmos más simples (como Round Robin o FCFS).
+    
+- Puede provocar **inanición (starvation)**: los procesos de baja prioridad podrían nunca ejecutarse si siguen llegando procesos de alta prioridad.
+    
+- Si las prioridades no están bien definidas o son asignadas arbitrariamente, el algoritmo pierde sentido y puede generar injusticia o ineficiencia.
+    
+
+---
+
+👉 En resumen:
+
+> El algoritmo por prioridades es ventajoso cuando hay distintos niveles de urgencia o criticidad en los procesos, pero pierde relevancia en sistemas homogéneos o donde se busca equidad.
+
+## 7. Inanición
+### 7.a. ¿Qué significa?
+
+La **Inanición (Starvation)** ocurre cuando un proceso (o un hilo) está listo para ejecutarse, pero es **permanentemente postergado** e impedido de acceder a la CPU (u otro recurso vital) debido a un sesgo en el algoritmo de planificación.
+
+En esencia, un proceso con baja prioridad puede esperar indefinidamente mientras procesos de mayor prioridad continúan llegando y acaparando la CPU. El proceso nunca muere de forma natural (por finalización), sino que "muere de hambre" al no recibir servicio.
+
+---
+
+### 7.b. ¿Cuál/es de los algoritmos vistos puede provocarla?
+
+Los dos principales algoritmos que pueden causar inanición son:
+
+1. **Planificación por Prioridades (Priority Scheduling):**
+    
+    - **Causa:** Un proceso de **baja prioridad** podría esperar indefinidamente si continuamente llegan o se crean nuevos procesos de **alta prioridad**.
+        
+2. **Shortest Job First (SJF) y Shortest Remaining Time First (SRTF):**
+    
+    - **Causa:** Un proceso con un **tiempo de ráfaga (burst time) muy largo** podría nunca ser seleccionado si hay un flujo constante de procesos con tiempos de ráfaga más cortos (o tiempos restantes más cortos).
+        
+
+---
+
+### 7.c. ¿Existe alguna técnica que evite la inanición para el/los algoritmos mencionados en el inciso b?
+
+Sí, la principal y más efectiva técnica para combatir la inanición, especialmente en la Planificación por Prioridades, es el **Envejecimiento (Aging)**. 👴
+
+#### Envejecimiento (Aging)
+
+- **Técnica:** Es un método que **incrementa gradualmente la prioridad** de los procesos que han estado esperando en la cola durante un tiempo excesivo.
+    
+- **Mecanismo:** Cuanto más tiempo pase un proceso sin recibir servicio, mayor será su prioridad.
+    
+- **Resultado:** Esto garantiza que, eventualmente, incluso el proceso con la prioridad inicial más baja alcanzará una prioridad lo suficientemente alta como para ser seleccionado y ejecutado, evitando así la inanición.
+    
+
+Esta técnica también puede aplicarse al algoritmo **SJF/SRTF** de forma implícita o explícita. Un proceso muy largo que espera mucho tiempo tiene su prioridad aumentada, asegurando que su gran tiempo de ráfaga se vea compensado por su elevada prioridad al final.
+## 8. Agregarle al ejercicio 5 las siguientes operaciones
+### FCFS
+
+| job | LLegada | Unidades de CPU | I/0 (Recurso, instante, duración) | 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 10  | 11  |
+| --- | ------- | --------------- | --------------------------------- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1   | 0       | 4               | (R1, 2, 1)                        | >1  | 2   | R1  |     |     |     | 3   | 4<  |     |     |     |     |
+| 2   | 2       | 6               | (R2, 3, 1) (R2, 5, 2)             |     |     | >1  | 2   | 3   | R2  |     |     |     |     |     |     |
+| 3   | 3       | 4               |                                   |     |     |     | >   |     |     |     |     | 1   | 2   | 3   | 4<  |
+| 4   | 6       | 5               | (R3, 1, 2) (R3, 3, 1)             |     |     |     |     |     |     | >   |     |     |     |     |     |
+| 5   | 8       | 2               |                                   |     |     |     |     |     |     |     |     | >   |     |     |     |
+|     |         |                 |                                   |     |     |     |     |     |     |     |     |     |     |     |     |
+|     | Queue   | 1               | ~~2~~                             | 3   | 4   | 5   |     |     |     |     |     |     |     |     |     |
+|     | QueueR1 | 1               |                                   |     |     |     |     |     |     |     |     |     |     |     |     |
+|     | QueueR2 |                 |                                   |     |     |     |     |     |     |     |     |     |     |     |     |
+|     | QueueR3 |                 |                                   |     |     |     |     |     |     |     |     |     |     |     |     |
+### FCFS 
