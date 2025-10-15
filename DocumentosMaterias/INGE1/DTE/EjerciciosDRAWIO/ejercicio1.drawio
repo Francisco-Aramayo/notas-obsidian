@@ -1,0 +1,109 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.1.2 Chrome/138.0.7204.243 Electron/37.4.0 Safari/537.36" version="28.1.2">
+  <diagram name="Página-1" id="nAl9qe2-XAKUs01I_RTH">
+    <mxGraphModel dx="872" dy="531" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-1" value="Funcionando a&amp;nbsp;&lt;div&gt;velocidad 1&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-2" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="-JpSMlI2O-ogzfqVtFSY-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="80" as="sourcePoint" />
+            <mxPoint x="590" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-3" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillStyle=auto;fillColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="290" y="60" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-4" value="Se presiona el botón &quot;aumentar&quot; [la licuadora está apagada] / Encender motor&amp;nbsp;&amp;nbsp;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="320" y="70" width="360" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-5" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="-JpSMlI2O-ogzfqVtFSY-1" target="-JpSMlI2O-ogzfqVtFSY-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="570" y="210" as="sourcePoint" />
+            <mxPoint x="580" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-6" value="Funcionando a velocidad 2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-7" value="Apagando" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-8" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="-JpSMlI2O-ogzfqVtFSY-1" target="-JpSMlI2O-ogzfqVtFSY-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="570" y="210" as="sourcePoint" />
+            <mxPoint x="620" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-9" value="Se presiona botón &quot;aumentar&quot; / aumentar velocidad del motor" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="390" y="125" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-11" value="Se presiona botón &quot;disminuir&quot; / desactivar motor" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=15;" vertex="1" parent="1">
+          <mxGeometry x="270" y="220" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-15" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="320" as="sourcePoint" />
+            <mxPoint x="780" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-29" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillStyle=auto;fillColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="260" y="360" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-31" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="-JpSMlI2O-ogzfqVtFSY-29" target="-JpSMlI2O-ogzfqVtFSY-32">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="490" y="300" as="sourcePoint" />
+            <mxPoint x="270" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-32" value="Funcionando V1&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="209.9999999999999" y="410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-33" value="Se presiona botón &amp;lt;aumentar&amp;gt; [licuadora apagada] / Encender motor" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="280" y="370" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-34" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="-JpSMlI2O-ogzfqVtFSY-32" target="-JpSMlI2O-ogzfqVtFSY-35">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="490" y="300" as="sourcePoint" />
+            <mxPoint x="610" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-35" value="Funcionando V2" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="410" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-36" value="Se presiona botón &amp;lt;aumentar&amp;gt; [velocidad = 1] / aumentar velocidad" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="360" y="430" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-37" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="-JpSMlI2O-ogzfqVtFSY-32">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="490" y="300" as="sourcePoint" />
+            <mxPoint x="200" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-38" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillStyle=dots;fillColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="180" y="480" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-39" value="Se presiona botón &amp;lt;disminuir&amp;gt; / apagar" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="150" y="500" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-42" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="-JpSMlI2O-ogzfqVtFSY-35" target="-JpSMlI2O-ogzfqVtFSY-32">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="460" y="500" as="sourcePoint" />
+            <mxPoint x="510" y="450" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="470" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-43" value="Se presiona botón &amp;lt;disminuir&amp;gt; [velocidad=2] / disminuir velocidad" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="430" y="530" width="270" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-JpSMlI2O-ogzfqVtFSY-44" value="Preguntas :&amp;nbsp;&lt;div&gt;- Hace falta la condición en las trancisiones?&lt;div&gt;- Al ser simple, esta bien dejar las acciones ahí? En el estado chequeo que sea velocidad 2 y disminuyo la velocidad al presionar botón&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="600" width="480" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

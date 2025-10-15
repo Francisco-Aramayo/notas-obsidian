@@ -1,0 +1,151 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5">
+  <diagram name="Página-1" id="7NnzS2weHs2KFgdIKhEm">
+    <mxGraphModel dx="1026" dy="706" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-1" value="Vigilando&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="215" y="180" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-2" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="1gjdfrxbgV77c6wjQgSw-1" target="1gjdfrxbgV77c6wjQgSw-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="300" as="sourcePoint" />
+            <mxPoint x="440" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-3" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;fillStyle=dots;" vertex="1" parent="1">
+          <mxGeometry x="260" y="90" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-5" value="Combatiendo" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-9" value="" style="curved=1;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="1gjdfrxbgV77c6wjQgSw-5" target="1gjdfrxbgV77c6wjQgSw-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="300" as="sourcePoint" />
+            <mxPoint x="320" y="250" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="560" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-67" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="1gjdfrxbgV77c6wjQgSw-10" target="1gjdfrxbgV77c6wjQgSw-63">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-10" value="Acciones" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="130" y="460" width="190" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-11" value="Acciones VICTORIA : Se incrementa la energía al 50%," style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="1gjdfrxbgV77c6wjQgSw-10">
+          <mxGeometry y="30" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-12" value="Acciones GOLPE1: Se decrementa un 10% la energía&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="1gjdfrxbgV77c6wjQgSw-10">
+          <mxGeometry y="60" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-13" value="Acciones HUIDA: Se guarda arma" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="1gjdfrxbgV77c6wjQgSw-10">
+          <mxGeometry y="90" width="190" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-18" value="Se detecta&amp;nbsp; enemigo [enemigo fuera del castillo] / equipa arco y flecha" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="450" y="260" width="180" height="10" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-20" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="1gjdfrxbgV77c6wjQgSw-1" target="1gjdfrxbgV77c6wjQgSw-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="470" y="330" as="sourcePoint" />
+            <mxPoint x="520" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-21" value="" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.008;entryY=0.883;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="1gjdfrxbgV77c6wjQgSw-1" target="1gjdfrxbgV77c6wjQgSw-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="470" y="330" as="sourcePoint" />
+            <mxPoint x="520" y="280" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="420" y="343" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-24" value="Se detecta enemigo [enemigo en castillo] / equipa espada" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="400" y="320" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-30" value="" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="1gjdfrxbgV77c6wjQgSw-5" target="1gjdfrxbgV77c6wjQgSw-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="770" y="330" as="sourcePoint" />
+            <mxPoint x="820" y="280" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="860" y="230" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-31" value="Se recibe golpe [...] / acciones GOLPE" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="827" y="220" width="173" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-32" value="Se derrota al&amp;nbsp; enemigo / acciones Victoria" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="480" y="150" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-35" value="" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="1gjdfrxbgV77c6wjQgSw-5" target="1gjdfrxbgV77c6wjQgSw-37">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="810" y="325" as="sourcePoint" />
+            <mxPoint x="840" y="430" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="880" y="315" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-36" value="Se recibe golpe [energía = 20%] acciones HUIDA" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="730" y="365" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-37" value="Huida" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="420" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-39" value="" style="curved=1;endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="1gjdfrxbgV77c6wjQgSw-37">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="580" y="480" as="sourcePoint" />
+            <mxPoint x="630" y="430" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="630" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-40" value="Se recibe golpe [energía &amp;gt; 10%]&amp;nbsp; / acciones GOLPE" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="610" y="450" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-41" value="" style="endArrow=none;html=1;rounded=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="1gjdfrxbgV77c6wjQgSw-37" target="1gjdfrxbgV77c6wjQgSw-42">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="570" y="370" as="sourcePoint" />
+            <mxPoint x="560" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-42" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillStyle=dots;fillColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="560" y="540" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-44" value="Se recibe golpe [ energía = 10%] / acciones MUERTE" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="560" y="510" width="210" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-45" value="" style="curved=1;endArrow=classic;html=1;rounded=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;exitX=0.058;exitY=0.983;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="1gjdfrxbgV77c6wjQgSw-37" target="1gjdfrxbgV77c6wjQgSw-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="570" y="370" as="sourcePoint" />
+            <mxPoint x="620" y="320" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="290" y="480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-46" value="Se pierde al enemigo&lt;div&gt;/ se recupera un 30% de energía&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="140" y="350" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-63" value="Acciones2" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="585" width="360" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-64" value="Acciones MUERTE: Se decrementa un 10% la salud, animación de muerte, se informa en pantalla&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Acciones START: Se crea guardia con 100% energia, se activa modo normal&amp;nbsp;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="1gjdfrxbgV77c6wjQgSw-63">
+          <mxGeometry y="30" width="360" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-68" value="Se crea personaje / acciones START" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="290" y="110" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-70" value="" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="890" y="370" width="270" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="1gjdfrxbgV77c6wjQgSw-69" value="CONSULTAS: LA ACCION DE CREAR PERSONAJE,&lt;div&gt;MODELADO EN GENERAL&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;siento que la creación de personaje es algo de sistema y lo detallo como si lo hiciera usuario&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="940" y="490" width="180" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
