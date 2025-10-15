@@ -45,7 +45,7 @@ ej: "Se presionó una tecla"
 >[!danger] Importante
 >condiciones y acciones se redactan en lenguaje natural. En vez de escribir "intentos++" usar "Incrementar intentos"
 
-## Pasitos
+## Pasos
 Breves pasos para la construcción de un DTE
 1. ​ Identificar todos los estados del sistema y representarlos como cajas. Los nombres de los estados se escriben en gerundio.
 2. Desde el estado inicial (único), comenzar a identificar los cambios del sistema que lo llevan de un estado a otro y representarlos con flechas (transiciones) que van desde el estado origen al estado destino.
