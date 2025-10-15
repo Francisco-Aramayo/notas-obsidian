@@ -606,3 +606,601 @@ Esta técnica también puede aplicarse al algoritmo **SJF/SRTF** de forma implí
 |     | QueueR2 |                 |                                   |     |     |     |     |     |     |     |     |     |     |     |     |
 |     | QueueR3 |                 |                                   |     |     |     |     |     |     |     |     |     |     |     |     |
 ### FCFS 
+
+
+---
+
+## 19. Dados los siguientes programas en pseudo código que simulan la utilización de llamadas al sistema para crear procesos en Unix/linux, indicar qué mensajes se imprimirán en pantalla (sin importar el orden en el que saldrían)
+
+```
+a.​ Caso 1
+
+printf(“hola”)
+x = fork()
+if x < 1 {
+	execv(“ls”)
+	printf(“mundo”)
+	exit(0)
+}
+exit(0)
+```
+R: 
+Hola!
+imprime resultado de ls
+
+```
+b.​ Caso 2
+	printf(“hola”)
+	x = fork()
+	if x < 1 {
+		execv(“ps”)
+		printf(“mundo”)
+		exit(0)
+	}
+	execv(“ls”)
+	printf(“fin”)
+	exit(0)
+```
+R:
+Hola
+imprime resultado de ps (lista procesos)
+imprime resultados de ls (lista directorios)
+```
+Caso 3
+	printf(“Anda a rendir el Primer Parcial de Promo!”)
+	newpid = fork()
+	if newpid == 0 {
+		printf(“Estoy comenzando el Examen”)
+		execv(“ps”)
+		printf(“Termine el Examen”)
+	}
+	printf(“¿Como te fue?”)
+	exit(0)
+	printf(“Ahora anda a descansar”)
+```
+R: 
+Anda a rendir el primer parcial de promo!
+Estoy comenzando el examen
+resultado del comando ps
+¿Cómo te fue?
+
+---
+## 20. Dado el siguiente programa en C, analice su objetivo sin necesidad de ejecutarlo.
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+int main ( void ) {
+	int c ;
+	pid_t pid ;
+	printf( " Comienzo . : \ n " ) ;
+	for ( c = 0 ; c < 3 ; c++ ) {
+		pid = fork ( ) ;
+	}
+	printf ( " Proceso \n " ) ;
+	return 0 ;
+}
+```
+RA: Este programa realiza 3 iteraciones, en cada una se ejecuta un fork, duplicando el proceso actual.
+Por lo tanto el número de procesos se multiplica por 2 en cada iteración.
+2 al cubo, quedan 8 líneas con la palabra proceso
+
+RB: si, cada "proceso" proviene de un proceso diferente que llega a esa ejecución
+
+---
+## 21. Modifiquemos el programa anterior. Ahora además de un mensaje, vamos a añadir una variable y antes de finalizar vamos a mostrar el valor de la misma.
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+int main ( void ) {
+	int c ;
+	pid_t pid ;
+	int p = 0;
+	printf( " Comienzo . : \ n " ) ;
+	for ( c = 0 ; c < 3 ; c++ ) {
+		pid = fork ( ) ;
+	}
+	p++;
+	printf ( " Proceso %d\n ",p ) ;
+	return 0 ;
+}
+```
+RA: ¿Qué valores se imprimirán en consola?
+El for crea 3 forks, al final se tienen 8 procesos.
+Como la variable p se inicio antes del fork, todos heredan ese valor, entonces siempre imprime "Proceso 1".
+
+RB: ¿Todas las líneas tendrán el mismo valor o algunas líneas tendrán valores distintos?
+Todas las líneas tienen el mismo valor 1.
+
+RC: ¿Cuál es el valor (o valores) que aparece?. Compile y ejecute el programa y pruebe si su respuesta es correcta.
+Proceso1 X 8.
+
+RD: ¿Realice modificaciones al programa, por ejemplo: modifique el valor del bucle for, cambie el lugar dónde se incrementa la variable p, y compruebe los nuevos resultados?
+Si se coloca el incremento de p, dentro del bucle for, después del fork, ahora si se imprimiria proceso con su número correspondiente.
+
+---
+## 22. ¿Qué es la MMU y qué funciones cumple?
+La **MMU** es la encargada de que cada proceso crea tener su propia memoria aislada y segura, traduciendo las direcciones que usa el programa en direcciones reales de la RAM y gestionando la protección y eficiencia del sistema de memoria. La MMU implementa mecanismos como paginación y segmentación!
+
+---
+## 23. ¿Qué representa el espacio de direcciones de un proceso?
+El **espacio de direcciones** de un proceso representa **el conjunto de direcciones de memoria que ese proceso puede usar**.  
+En otras palabras:
+
+> Es **la visión que un proceso tiene de la memoria**, como si fuera toda suya, aunque en realidad el sistema operativo y la MMU la estén gestionando y aislando del resto.
+
+---
+
+### 🔍 **Detalles importantes**
+
+1. **Cada proceso tiene su propio espacio de direcciones virtuales.**
+    
+    - Eso significa que dos procesos pueden usar, por ejemplo, la dirección `0x8048000`, pero en realidad apuntan a **lugares físicos distintos** en la RAM.
+        
+    - Esto lo logra la **MMU** mediante la **traducción de direcciones virtuales a físicas**.
+        
+2. **El espacio de direcciones es virtual.**
+    
+    - Los programas no trabajan con direcciones físicas reales, sino con **direcciones virtuales** que son mapeadas dinámicamente por el sistema operativo.
+        
+3. **Permite aislamiento y seguridad.**
+    
+    - Un proceso no puede acceder (salvo excepciones controladas) a la memoria de otro.
+        
+    - Así se evita que un error o ataque afecte a otros procesos o al kernel.
+        
+
+---
+
+### 🧩 **Estructura típica del espacio de direcciones**
+
+En un sistema típico (por ejemplo Linux de 32 bits), el espacio de direcciones de un proceso se organiza más o menos así:
+```
++------------------------+  ← Direcciones altas
+|   Kernel (SO)          |
++------------------------+
+|   Pila (Stack)         | ← Crece hacia abajo
++------------------------+
+|   Heap (malloc, new)   | ← Crece hacia arriba
++------------------------+
+|   Datos estáticos      | ← Variables globales e inicializadas
++------------------------+
+|   Código (Text)        | ← Instrucciones del programa
++------------------------+  ← Dirección 0
+
+```
+- **Código (text segment):** contiene las instrucciones del programa.
+    
+- **Datos (data segment):** variables globales y estáticas.
+    
+- **Heap:** memoria dinámica (malloc, new, etc.).
+    
+- **Stack:** pila de ejecución (funciones, variables locales).
+### 🧭 **En resumen**
+
+| Concepto   | Descripción                                                  |
+| ---------- | ------------------------------------------------------------ |
+| Definición | Conjunto de direcciones de memoria que un proceso puede usar |
+| Tipo       | Virtual (no corresponde directamente a direcciones físicas)  |
+| Propósito  | Aislar procesos y simplificar la gestión de memoria          |
+| Estructura | Código, datos, heap, pila, y espacio del kernel              |
+
+---
+## 24. Explique y relacione los siguientes conceptos:
+### Dirección lógica o virtual
+- Es la **dirección de memoria que genera la CPU** cuando un programa se ejecuta.
+    
+- También se la llama **dirección virtual**, porque **no corresponde directamente a una posición física en la RAM**.
+    
+- Cada proceso trabaja con su propio conjunto de direcciones lógicas (su **espacio de direcciones**), lo que le da la **ilusión de tener toda la memoria para sí mismo**.
+
+>[!tip] Ejemplo
+> El proceso A accede a la dirección virtual `0x1000`.  
+> El proceso B también puede usar `0x1000`, pero en realidad apuntan a diferentes zonas físicas de la RAM.
+
+### Dirección física
+- Es la **dirección real en la memoria RAM** donde se almacenan los datos o instrucciones.
+    
+- La memoria física es única para todo el sistema, y el sistema operativo se encarga de **asignar partes de ella a cada proceso**.
+    
+- Las direcciones físicas son las que la **MMU finalmente utiliza para acceder a la RAM**.
+>[!tip] Ejemplo
+>La dirección virtual `0x1000` del proceso A puede corresponder a la dirección física `0xABC000` en RAM.
+
+---
+## 25. 
+En la técnica de Particiones Múltiples, la memoria es dividida en varias particiones y los espacios de direcciones de los procesos son ubicados en estas, siempre que el
+tamaño del mismo sea menor o igual que el tamaño de la partición.
+Al trabajar con particiones se pueden considerar 2 métodos (independientes
+entre sí):
+	​ Particiones Fijas
+	​ Particiones Dinámicas
+
+### a.​ Explique cómo trabajan estos 2 métodos. Cite diferencias, ventajas y desventajas.
+
+#### Particiones Fijas
+En el método de **particiones fijas**, la memoria principal se divide en varias particiones de **tamaños predefinidos y fijos** al iniciar el sistema operativo. Estas particiones no cambian de tamaño. A cada proceso se le asigna la primera partición disponible que sea lo suficientemente grande para alojarlo.
+
+- **Ventajas:**
+    
+    - **Simplicidad:** Su implementación es relativamente sencilla.
+        
+    - **Baja sobrecarga:** No requiere mucha sobrecarga para su gestión.
+        
+- **Desventajas:**
+    
+    - **Fragmentación interna:** Un proceso pequeño puede ser asignado a una partición grande, dejando espacio sin usar dentro de esa partición. Esto desperdicia memoria.
+        
+    - **Limitación de tamaño:** Un proceso no puede ser más grande que la partición más grande disponible.
+        
+    - **Grado de multiprogramación limitado:** El número de procesos que pueden estar en memoria al mismo tiempo es igual al número de particiones.
+#### Particiones Dinámicas
+En el método de **particiones dinámicas**, la memoria **no se particiona de antemano**. Cuando un proceso necesita cargarse, se le asigna un bloque de memoria contiguo exactamente del tamaño que requiere. La partición se crea "sobre la marcha" y su tamaño es igual al tamaño del proceso.
+
+- **Ventajas:**
+    
+    - **Sin fragmentación interna:** La memoria se asigna en el tamaño exacto del proceso, eliminando el desperdicio de memoria dentro de la partición.
+        
+    - **Uso eficiente de la memoria:** Se utiliza la cantidad de memoria que realmente se necesita.
+        
+- **Desventajas:**
+    
+    - **Fragmentación externa:** A medida que los procesos se cargan y se liberan, pueden quedar pequeños bloques de memoria libre dispersos. Aunque el espacio total libre sea suficiente para un nuevo proceso, puede que no haya un solo bloque contiguo lo suficientemente grande. Esto puede llevar a la necesidad de **compactación** de la memoria, que es un proceso costoso.
+        
+    - **Mayor complejidad:** La gestión de la memoria es más compleja, ya que el kernel debe llevar un registro de todos los bloques de memoria libres y ocupados.
+
+### b.​ ¿Qué información debe disponer el Kernel para poder administrar la memoria principal con estos métodos?
+Para administrar la memoria principal con estos métodos, el **kernel** del sistema operativo necesita mantener un registro de la siguiente información:
+
+- **Información de las particiones (Fijas):** Para cada partición, el kernel debe saber su dirección de inicio y su tamaño.
+    
+- **Mapa de bits de la memoria (Dinámicas):** El kernel puede usar una estructura de datos como un mapa de bits para representar el estado de la memoria. Cada bit podría representar un bloque de memoria (por ejemplo, 1KB), indicando si está libre (0) u ocupado (1).
+    
+- **Lista de bloques libres y ocupados (Dinámicas):** Alternativamente, el kernel puede mantener dos listas enlazadas: una para los bloques de memoria libre y otra para los bloques ocupados. Cada entrada en la lista contendría la dirección de inicio del bloque y su tamaño.
+    
+- **Información de los procesos:** Para cada proceso, el kernel necesita conocer su **dirección de inicio en memoria física** y su **tamaño**. Esta información es crucial para la asignación y liberación de memoria.
+### c.​ Realice un gráfico indicando cómo se realiza la transformación de direcciones lógicas a direcciones físicas.
+La transformación de direcciones lógicas a físicas es un proceso fundamental en la gestión de memoria. Una **dirección lógica** es la que genera el procesador, mientras que una **dirección física** es la dirección real en la memoria principal. En el esquema de particiones, esta transformación se realiza de la siguiente manera:
+
+1. **El procesador genera una dirección lógica.** Esta dirección consta de un **desplazamiento** (offset) desde el inicio del espacio de direcciones del proceso.
+    
+2. **El hardware de gestión de memoria (MMU)** toma esta dirección lógica.
+    
+3. **Se suma la dirección de inicio de la partición.** El kernel le proporciona a la MMU la dirección de inicio de la partición en la que se cargó el proceso.
+    
+4. **Se obtiene la dirección física.** Al sumar la dirección de inicio de la partición a la dirección lógica (desplazamiento), se obtiene la dirección física real en la memoria principal.
+    
+
+Esta operación se puede expresar con la siguiente fórmula:
+
+**Dirección Física = Dirección de Inicio de la Partición + Dirección Lógica**
+
+---
+## 26. Al trabajar con particiones fijas:
+Los tamaños de las mismas se pueden considerar :
+- Particiones de igual tamaño
+- Particiones dinámicas
+Citar ventajas y desventajas entre las alternativas
+
+### Particiones de igual tamaño
+A cada proceso se le asigna una partición, siempre que su tamaño sea menor o igual.
+Ventajas
+- Simplicidad: la gestión es simple, el kernel solo necesita una lista o mapa de bits para saber que particiones están libres u ocupadas.
+- Bajo overhead:: No se requiere una gran cantidad de cálculos para la asignación de memoria.
+Desventajas
+- Desperdicio de memoria: Si los procesos tienen tamaños muy variados, este método es ineficiente. Un proceso pequeño desperdiciaría una gran cantidad de espacio en la partición.
+- Limitación de tamaño: Un proceso no puede ejecutarse si es más grande que el tamaño de la partición.
+### Particiones de diferente tamaño
+Se intenta de tener una variedad de tamaños para acomodar procesos pequeños, medianos y grandes.
+Ventajas
+- Menor desperdicio de memoria: Al tener particiones de diferentes tamaños, se puede asignar a un proceso una partición más adecuada a su tamaño, reduciendo la fragmentación interna. Un proceso pequeño puede ir a una partición pequeña, y uno grande a una grande
+- Mayor flexibilidad: Permite que los procesos de diferentes tamaños coexistan en la memoria de manera más eficiente.
+Desventajas
+- Mayor complejidad: El kernel debe buscar la mejor de las particiones en una lista.
+- Algoritmos de asignación: Se requieren algoritmos de asignación (como primer ajuste, mejor ajuste o peor ajuste) para decidir que partición usar.
+---
+## 27. Fragmentación
+Ambos métodos de particiones presentan el problema de la fragmentación:
+​ - Fragmentación Interna (Para el caso de Particiones Fijas)
+​ - Fragmentación Externa (Para el caso de Particiones Dinámicas)
+
+### a.​ Explique a qué hacen referencia estos 2 problemas
+
+La **fragmentación interna** ocurre cuando a un proceso se le asigna un bloque de memoria más grande de lo que necesita. Esto es común en el método de **particiones fijas**. El espacio sobrante dentro del bloque asignado no puede ser utilizado por ningún otro proceso, lo que lleva a un desperdicio de memoria.
+
+Por ejemplo, si un proceso necesita 25KB de memoria y se le asigna una partición de 30KB, los 5KB restantes son fragmentación interna. Esta memoria queda inutilizable hasta que el proceso termine.
+
+La **fragmentación externa** se da cuando hay suficiente memoria total disponible para satisfacer una solicitud de un proceso, pero la memoria está dispersa en pequeños bloques no contiguos. Este problema es característico del método de **particiones dinámicas**, donde los procesos se cargan y descargan, dejando huecos de memoria libre.
+
+Por ejemplo, si un proceso necesita 10KB y hay 5KB libres en una ubicación y otros 5KB en otra, el proceso no puede ser cargado porque la memoria no es contigua.
+
+### b.​ El problema de la Fragmentación Externa es posible de subsanar. Explique una
+El problema de la fragmentación externa se puede subsanar mediante una técnica llamada **compactación**. La compactación es el proceso de reorganizar la memoria para que todos los bloques de memoria libre se unan en un solo bloque contiguo.
+
+La técnica funciona de la siguiente manera:
+
+1. **El kernel detiene la ejecución de los procesos.**
+    
+2. **Mueve los bloques de memoria ocupados.** Todos los procesos que se encuentran en la memoria se desplazan a un extremo de la memoria principal (por lo general, el extremo inferior).
+    
+3. **Actualiza las direcciones de los procesos.** A medida que los procesos se mueven, sus direcciones de inicio en memoria física cambian. El kernel debe actualizar las tablas de direcciones de los procesos para que apunten a sus nuevas ubicaciones.
+    
+4. **Libera un bloque contiguo.** Una vez que todos los procesos se han movido, todo el espacio libre restante se consolida en un solo bloque grande, listo para ser asignado a un nuevo proceso.
+    
+
+Si bien la compactación es una solución efectiva para la fragmentación externa, es una operación costosa en términos de tiempo de CPU y puede causar una interrupción temporal en la ejecución de los procesos. Por esta razón, no se realiza con frecuencia, sino solo cuando la fragmentación externa alcanza un nivel crítico.
+
+---
+## 28. 
+Analice y describa cómo funcionan las siguientes técnicas de asignación de
+particiones: Best Fit, Worst Fit, First Fit y Next Fit. Tenga en cuenta que información
+debe mantener el Kernel. Indique, para los métodos de particiones dinámicas y
+fijas, con cuál técnica se obtienen mejores resultados y justifique.
+
+### Técnicas de Asignación de Particiones
+
+Estas técnicas se utilizan para decidir qué partición de memoria libre se asigna a un nuevo proceso. Para poder aplicar estos algoritmos, el **kernel** debe mantener una **lista enlazada** de todas las particiones de memoria, indicando si están libres u ocupadas, y su dirección de inicio y tamaño.
+
+#### First Fit (Primer Ajuste)
+
+- **Funcionamiento:** El kernel busca en la lista de particiones desde el principio y asigna al proceso la **primera partición libre** que sea lo suficientemente grande para contenerlo.
+    
+- **Información del Kernel:** Debe tener la lista completa de particiones y un puntero a la última partición asignada para empezar la búsqueda en el siguiente punto.
+    
+- **Análisis:** Es la técnica más simple y rápida, ya que no necesita buscar la mejor opción. Sin embargo, puede llevar a una fragmentación externa significativa, especialmente si los primeros bloques son pequeños, dejando los grandes para procesos que podrían no necesitarlos.
+    
+
+---
+
+### Next Fit (Siguiente Ajuste)
+
+- **Funcionamiento:** Similar a First Fit, pero la búsqueda de la siguiente partición libre comienza **desde donde terminó la última búsqueda**, no desde el inicio de la lista.
+    
+- **Información del Kernel:** Debe mantener un puntero que apunte a la última partición asignada.
+    
+- **Análisis:** Es un poco más rápido que First Fit en promedio, ya que distribuye la búsqueda por toda la memoria, pero puede generar una fragmentación externa aún más dispersa.
+    
+
+---
+
+### Best Fit (Mejor Ajuste)
+
+- **Funcionamiento:** El kernel examina toda la lista de particiones libres y asigna al proceso la partición que sea **la más pequeña pero aún lo suficientemente grande** para contenerlo. El objetivo es minimizar el espacio sobrante.
+    
+- **Información del Kernel:** Debe recorrer la lista completa de particiones libres para encontrar la mejor opción.
+    
+- **Análisis:** Minimiza la fragmentación interna al no desperdiciar grandes cantidades de espacio. Sin embargo, puede dejar muchos bloques de memoria muy pequeños (fragmentación externa), que son difíciles de usar para futuros procesos. Es más lento que First Fit o Next Fit porque requiere una búsqueda exhaustiva.
+    
+
+---
+
+### Worst Fit (Peor Ajuste)
+
+- **Funcionamiento:** El kernel busca la partición **más grande** de la lista y se la asigna al proceso. La lógica es que el espacio sobrante de una partición muy grande será lo suficientemente grande para ser útil para otros procesos pequeños.
+    
+- **Información del Kernel:** Requiere una búsqueda exhaustiva similar a Best Fit para encontrar la partición más grande.
+    
+- **Análisis:** Intenta evitar la acumulación de fragmentos muy pequeños y inútiles. Sin embargo, al usar el bloque más grande, puede resultar en que un proceso grande que llegue después no tenga espacio suficiente.
+    
+
+---
+### Comparativa y Justificación
+
+### Particiones Fijas
+
+En las **particiones fijas**, el mejor método es **Best Fit**. Dado que las particiones tienen un tamaño fijo, el principal problema es la **fragmentación interna**. Al elegir la partición más ajustada posible (Best Fit), se minimiza el espacio desperdiciado dentro de la partición asignada. Los otros métodos, como First Fit, podrían asignar un proceso pequeño a una partición muy grande, aumentando la fragmentación interna.
+
+### Particiones Dinámicas
+
+En las **particiones dinámicas**, la principal preocupación es la **fragmentación externa**. Los métodos que funcionan mejor son **First Fit y Next Fit** en términos de rendimiento general y balance. Aunque Best Fit minimiza la fragmentación interna (lo cual no es un problema en particiones dinámicas), su tendencia a dejar pequeños huecos inútiles (fragmentación externa) lo hace menos deseable. Los métodos First Fit y Next Fit son más rápidos y, aunque contribuyen a la fragmentación externa, lo hacen de una manera que puede ser más manejable.
+
+---
+## 29. Segmentación 
+a.​ Explique cómo trabaja este método de asignación de memoria.
+b.​ ¿Qué estructuras son necesarias en el Kernel para poder ejecutarse sobre un
+Hardware que utiliza segmentación?
+c.​ Explique, utilizando gráficos, cómo son resueltas las direcciones lógicas a
+físicas.
+d.​ En este esquema: ¿se puede producir fragmentación (interna y/o externa)?
+e.​ De las técnicas enumeradas en el ejercicio 29 ¿Cuál se ajusta mejor para la
+asignación de memoria principal?
+
+### a. Funcionamiento del Método
+
+La **segmentación** es un método de gestión de memoria que divide el espacio de direcciones de un proceso en bloques lógicos de tamaño variable llamados **segmentos**. Cada segmento corresponde a una parte lógica del programa (por ejemplo, el código, la pila, los datos, etc.). Los segmentos no necesitan ser contiguos en la memoria física.
+
+### b. Estructuras del Kernel
+
+Para utilizar segmentación, el Kernel debe tener una **tabla de segmentos** para cada proceso. Cada entrada en esta tabla contiene:
+
+- **Dirección Base:** La dirección física de inicio del segmento en la memoria principal.
+    
+- **Límite (o Longitud):** El tamaño del segmento.
+    
+
+### c. Resolución de Direcciones Lógicas a Físicas
+
+La dirección lógica en un sistema segmentado se compone de dos partes:
+
+- **Número de Segmento:** Identifica a qué segmento pertenece la dirección.
+    
+- **Desplazamiento (Offset):** Indica la posición dentro de ese segmento.
+    
+
+La **Unidad de Gestión de Memoria (MMU)** realiza la traducción. . El proceso es el siguiente:
+
+1. La MMU recibe una dirección lógica (segmento, desplazamiento).
+    
+2. Utiliza el **número de segmento** para buscar la entrada correspondiente en la **tabla de segmentos**.
+    
+3. Comprueba que el **desplazamiento** no supere el **límite** del segmento para evitar accesos fuera de los límites. Si es mayor, se genera un error.
+    
+4. Suma la **dirección base** del segmento (obtenida de la tabla) al **desplazamiento** para obtener la **dirección física** real en la memoria.
+    
+
+### d. Fragmentación
+
+- **Fragmentación Interna:** No se produce. Los segmentos se asignan con el tamaño exacto que el proceso requiere, sin dejar espacio no utilizado dentro de ellos.
+    
+- **Fragmentación Externa:** **Sí se produce**. A medida que los procesos (o segmentos) se cargan y descargan, la memoria se llena de bloques libres de diferentes tamaños dispersos, lo que lleva a la fragmentación externa, similar a las particiones dinámicas.
+    
+
+### e. Técnica de Asignación
+
+Para la asignación de memoria principal en la segmentación, las técnicas del Ejercicio 28 son aplicables. **First Fit** y **Next Fit** son las que mejor se ajustan. Como la segmentación presenta **fragmentación externa**, estas técnicas son eficientes y rápidas para encontrar el primer segmento de memoria libre lo suficientemente grande. Aunque Best Fit podría parecer ideal, su lentitud y la creación de pequeños huecos de memoria lo hacen menos deseable en un sistema de segmentación donde la fragmentación externa es el principal problema.
+
+---
+## 30.
+​Dado un esquema de segmentación donde cada dirección hace referencia a 1 byte y la siguiente tabla de segmentos de un proceso, traduzca, de corresponder, las direcciones lógicas indicadas a direcciones físicas. La Dirección lógica está representada por: Segmento: deplazamiento
+
+
+| Segmento | Dir. Base | Tamaño |
+| -------- | --------- | ------ |
+| 0        | 102       | 12500  |
+| 1        | 28699     | 24300  |
+| 2        | 68010     | 15855  |
+| 3        | 80001     | 400    |
+### i. 0000:9001
+base + desplazamiento = Direccion física
+102 + 9001 = 9103
+### ii. 0001:24301
+28699 + 24301 = 53000 El desplazamiento cae fuera del espacio de direcciones, operación inválida.
+### iii. 0002:5678
+68010 + 5678 = 73688
+### iv. 0001:18976
+28699 + 18976 = 47675
+### v. 0003:0
+80001 + 0 = 80001  
+
+---
+## 31. Paginación
+### a.​ Explique cómo trabaja este método de asignación de memoria.
+La **paginación** es un método de asignación de memoria no contigua que permite a los procesos residir en fragmentos físicos de memoria no adyacentes. El objetivo principal de la paginación es **resolver el problema de la fragmentación externa**.
+
+El sistema divide la memoria física en bloques de tamaño fijo llamados **marcos de página** (`frames`). Al mismo tiempo, el sistema divide la memoria lógica de cada proceso en bloques del mismo tamaño llamados **páginas** (`pages`).
+
+Cuando un proceso necesita ejecutarse, el sistema operativo le asigna marcos de página disponibles en la memoria física para almacenar sus páginas lógicas. Los marcos de página pueden estar dispersos por toda la memoria física sin necesidad de ser contiguos. El mapeo entre las páginas lógicas y los marcos de página físicos lo realiza el hardware con ayuda del sistema operativo.
+
+### b.​ ¿Qué estructuras son necesarias en el Kernel para poder ejecutarse sobre un Hardware que utiliza paginación ?
+Para que un sistema operativo se ejecute sobre un hardware que utiliza paginación, el Kernel necesita al menos las siguientes estructuras de datos principales:
+
+- **Tabla de páginas (`Page Table`):** Es una estructura de datos fundamental, generalmente almacenada en la memoria principal, que contiene la correspondencia entre las páginas lógicas de un proceso y los marcos de página físicos en la memoria. Cada proceso en ejecución tiene su propia tabla de páginas.
+    
+- **Registro de tabla de páginas (`Page Table Base Register` o `PTBR`):** Este registro de hardware, ubicado en la **unidad de gestión de memoria** (`MMU`), apunta a la dirección de inicio de la tabla de páginas del proceso en ejecución.
+
+### c.​ Explique, utilizando gráficos, cómo son resueltas las direcciones lógicas en físicas.
+La resolución de una dirección lógica a una física en un esquema de paginación se realiza en dos pasos:
+
+1. **División de la dirección lógica:** La dirección lógica se divide en dos partes por el hardware:
+    
+    - **Número de página (`p`):** La parte superior de la dirección, que se utiliza como índice para la tabla de páginas.
+        
+    - **Desplazamiento (`d`):** La parte inferior de la dirección, que indica la posición dentro de la página.
+        
+2. **Traducción de la dirección:** La **Unidad de Gestión de Memoria (`MMU`)** utiliza el **número de página** para buscar en la **tabla de páginas del proceso** (cuya dirección está en el PTBR). El valor en la entrada de la tabla de páginas correspondiente a `p` contiene el **número de marco de página** físico (`f`). La dirección física se construye concatenando el número de marco de página (`f`) y el desplazamiento (`d`).
+    
+
+Direccion logica: (p,d)
+
+Direccioˊn fısica: (f,d)
+
+Donde f es el número de marco de página que se encuentra en la entrada p de la tabla de páginas.
+### d.​ En este esquema: ¿se puede producir fragmentación (interna y/o externa)?
+En este esquema, se puede producir **fragmentación interna**, pero **no fragmentación externa**.
+
+- **Fragmentación interna:** Ocurre si el tamaño de un proceso no es un múltiplo exacto del tamaño de la página. La última página del proceso puede no llenarse por completo, dejando un espacio no utilizado dentro de un marco de página. Este espacio es memoria desperdiciada que no puede ser asignada a otro proceso.
+    
+- **Fragmentación externa:** Es la memoria libre que está dispersa en pequeños bloques entre bloques de memoria asignados. La paginación evita este problema al permitir que los procesos residan en marcos de página no contiguos, eliminando la necesidad de buscar un bloque de memoria contiguo lo suficientemente grande para todo el proceso.
+---
+## 32. Suponga un sistema donde la memoria es administrada mediante la técnica de paginación, y donde:
+- El tamaño de la página es de 512 bytes
+- Cada dirección de memoria referencia 1 byte.
+- Se tiene una memoria principal de 10240 bytes (10 KiB) y los marcos enumeran desde 0 y comienzan en la dirección física 0.
+Suponga además un proceso P1 con un tamaño lógico de 2000 bytes y con la siguiente tabla de páginas:
+
+| Página | Marco |
+| ------ | ----- |
+| 0      | 3     |
+| 1      | 5     |
+| 2      | 2     |
+| 3      | 6     |
+### a. Realice los gráficos necesarios (de la memoria principal, del espacio de direcciones del proceso, de tabla de páginas y de la tabla de marcos) en el que refleje el estado descripto.
+num marco * tam pagina = base
+num marco sig * tam pag - 1 = límite
+
+| Marco | Inicio-Fin |
+| ----- | ---------- |
+| 0     | 0-511      |
+| 1     | 512-1023   |
+| 2     | 1024-1535  |
+| 3     | 1536-2047  |
+| 4     | 2048-2559  |
+| 5     | 2560-3071  |
+| 6     | 3072-3583  |
+### b. Indicar si las siguientes direcciones lógicas corresponden al espacio lógico del proceso P1 y en caso afirmativo indicar la dirección física a la que corresponden.
+>[!tip] Div con la calculadora
+> El resto entero de la división
+> Ejemplo : 15 / 4 = 3.75 
+> Res = 3
+
+>[!tip] Mod con calculadora
+>**Fórmula:** a(modb)= a − (parte entera de (a÷b)) × b
+>**Ejemplo:** ¿Cuánto es 15(mod4)?
+>1. Calcula 15 / 4 = 3.75
+>2. La parte entera es 3
+>3. Multiplicar esa parte por el divisor: 3x4 = 12
+>4. Restar el resultado del dividendo : 15 - 12 = 3
+>5. Modulo es 3.
+
+>[!danger] De lógica a física
+>Página = DL div Tamaño página
+>Desplazamiento = DL mod Tamaño página
+>DF = (marco X tam página ) + desplazamiento
+#### i. 35
+35 div 512 = 0 (página 0, corresponde al marco 3)
+35 mod 512 = 35 desplazamiento
+Dirección física = marco X tam pag) + desplazamiento
+1536 + 35 = 1571 válida porque está dentro del rango!
+#### ii. 512
+512 div 512 = 1 ( página 1, marco 5)
+512 mod 512 = 0 desplazamiento
+Dirección física = 2560 + 0 = 2560 válida está dentro del rango
+#### iii. 2051
+2051 div 512 = 4 (página 4, no está en la tabla del proceso, dirección inválida)
+#### iv. 0
+0 div 512 = 0 (página 0, marco 3)
+0 mod 512 = 0 desplazamiento 
+Dirección física = 1536 (dentro de rango dirección válida)
+#### v. 1325
+1325 div 512 = 2 (página 2, corresponde al marco 2)
+1325 mod 512 = 301 desplazamiento
+Dirección física = 1024 + 301 = 1325 (dentro del rango dirección válida)
+#### vi. 602
+602 div 512 = 1 (página 1, corresponde marco 5)
+605 mod 512 = 93 desplazamiento 
+### c. Indicar en caso de ser posible, las direcciones lógicas del proceso p1 que se corresponden a las siguientes direcciones físicas
+>[!danger] de fisicas a lógicas
+>marco = DF / Tam pag
+>desplazamiento = Df mod tam Pag
+>DL = (página x tamaño de página) + desplazamiento
+#### i. 509
+509 div 512 = 0 (marco 0 no se corresponde con ninguna página)
+#### ii.1500
+1500 div 512 = 2 (marco 2 corresponde con página 2)
+1500 mod 512 = 476 desplazamiento
+Dirección lógica = 2 * 512 + 476  = 1500 
+#### iii.0
+0 div 512 = 0 (marco 0 no se corresponde con ninguna página)
+#### iv. 3215
+3215 div 512 = 6 (marco 6 se corresponde con página 3)
+3215 mod 512 = 143 desplazamiento
+Dirección Lógica = 3 * 512 +143 = 1679 
+#### v. 1024
+1024 div 512 = 2 (marco 2 se corresponde con página 2)
+1024 mod 512 = 0 desplazamiento
+Dirección lógica = 2 * 512 + 0 = 1024
+#### vi. 2000
+2000 div 512 = 3 (marco 3, se corresponde a pagina 0)
+2000 mod 512 = 464 desplazamiento
+Dirección lógica = 0 * 521 + 464 = 464
