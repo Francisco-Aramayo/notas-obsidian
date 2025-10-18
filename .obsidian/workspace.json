@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "811cf05e6f08afb9",
@@ -95,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "INGE1/TP3CU/TP3CU.md",
+                "file": "ISO/Shell scripting.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Enlaces entrantes de TP3CU"
+              "title": "Enlaces entrantes de Shell scripting"
             }
           },
           {
@@ -143,16 +142,17 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "INGE1/TP3CU/TP3CU.md",
+                "file": "ISO/Shell scripting.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Esquema de TP3CU"
+              "title": "Esquema de Shell scripting"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -172,9 +172,22 @@
   },
   "active": "77eaf69c11075f19",
   "lastOpenFiles": [
+    "DBD/SQL - Práctica.md",
+    "DBD/Álgebra relacional.md",
+    "ISO/ISO Trabajo Práctico N°1.md",
+    "Sin título 1.md",
+    "Sin título.md",
+    "Pasted image 20251007175016.png",
+    "Pasted image 20251007175027.png",
+    "ISO/Shell scripting.md",
+    "DBD/Optimización de consultas.md",
+    "DocumentosMaterias/ISO/TP3ISO/script-de-ejemplo.tar.gz",
+    "DocumentosMaterias/ISO/TP3ISO/Trabajo Práctico 3.pdf",
+    "DocumentosMaterias/ISO/TP3ISO/Shell Scripting.pdf",
+    "DocumentosMaterias/ISO/TP3ISO",
+    "INGE1/TP4DTE/Explicación.md",
     "DocumentosMaterias/INGE1/Ejercicios adicionales resueltos DTE y Petri.pdf",
     "INGE1/TP5RP/Rp.md",
-    "INGE1/TP4DTE/Explicación.md",
     "INGE1/TP5RP",
     "DocumentosMaterias/INGE1/RedesPetri/IS1-RP-2025.pdf",
     "DocumentosMaterias/INGE1/RedesPetri/QR a explicación de RP.png",
@@ -182,25 +195,14 @@
     "DocumentosMaterias/INGE1/RedesPetri",
     "DocumentosMaterias/INGE1/QR a explicación de RP.png",
     "DocumentosMaterias/INGE1/Practica-5-RP-2025.pdf",
-    "DocumentosMaterias/INGE1/IS1-RP-2025.pdf",
-    "DocumentosMaterias/INGE1/RP",
-    "DBD/SQL - Práctica.md",
     "ISO/Curso básico linux.md",
     "ISO/TP2/ISO Trabajo Práctico N°2.md",
-    "Sin título.md",
     "OO1/Testing.md",
-    "INGE1/TP4DTE",
-    "Pasted image 20251007175027.png",
-    "Pasted image 20251007175016.png",
-    "DBD/Álgebra relacional.md",
     "ISO/TP2/Pasted image 20251006151130.png",
-    "DBD",
-    "ISO/TP2",
     "ISO/TP2/Pasted image 20251006150849.png",
     "ISO/TP2/Pasted image 20250928143310.png",
     "ISO/TP2/Pasted image 20250928143053.png",
     "ISO/TP2/Pasted image 20250928143020.png",
-    "ISO/ISO Trabajo Práctico N°1.md",
     "ISO/TP2/Pasted image 20251006162412.png",
     "ISO/Introducción a los sistemas operativos.md",
     "ISO/Algoritmos.md",
